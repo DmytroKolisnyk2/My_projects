@@ -1,0 +1,14 @@
+{
+  "name": "dmytro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass src/scss/styles.scss -o src/css && node-sass --watch src/scss/styles.scss -o src/css "
+  },
+  "author": "Dimon",
+  "license": "ISC",
+  "dependencies": {
+    "node-sass": "^5.0.0"
+  }
+}
