@@ -16,6 +16,8 @@
   padding-top: 40px;
   &__radio {
     visibility: hidden;
+    visibility: hidden;
+
   }
   &__card-wrapper {
     width: 350px;
@@ -31,15 +33,7 @@
     width: 350px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    &--1 {
-    }
-    &--2 {
-    }
-    &--3 {
-    }
-    &--4 {
-    }
+    justify-content: space-evenly;
   }
   &__img {
     width: 350px;
