@@ -1,50 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" href="./css/styles.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>my project</title>
-  </head>
 
-  <body>
-    <div class="slider">
-      <span class="slider__btn slider__btn--1"></span>
-      <span class="slider__btn slider__btn--2"></span>
-      <span class="slider__btn slider__btn--3"></span>
-      <span class="slider__btn slider__btn--4"></span>
-  
-      <div class="slider__card slider__card--1">
-        <img src="./img/1.png" alt="no_img" class="slider__photo" />
-        <p class="slider__text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis,
-          animi asperiores. Earum corporis maxime tenetur, iusto impedit
-          cupiditate reiciendis voluptas?
-        </p>
-      </div>
-      <div class="slider__card slider__card--2">
-        <img src="./img/2.png" alt="no_img" class="slider__photo" />
-        <p class="slider__text">
-          Earum corporis maxime tenetur, iusto impedit cupiditate reiciendis
-          voluptas. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-          Voluptate, quam.
-        </p>
-      </div>
-      <div class="slider__card slider__card--3">
-        <img src="./img/3.png" alt="no_img" class="slider__photo" />
-        <p class="slider__text">
-          internal/bootstrap/nodEarum corporis maxime tenetur, iusto impedit
-          cupiditate reiciendis voluptas.
-        </p>
-      </div>
-      <div class="slider__card slider__card--4">
-        <img src="./img/5.png" alt="no_img" class="slider__photo" />
-        <p class="slider__text">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsa neque
-          delectus facilis nihil id dolorum ipsam voluptates accusamus sint
-          perferendis consectetur soluta excepturi, quaerat minus.
-        </p>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="./css/styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>my project</title>
+</head>
+
+<body>
+  <section class="slider">
+    <input checked type="radio" name="slider" id="radio1" class="slider__radio">
+    <input type="radio" name="slider" id="radio2" class="slider__radio">
+    <input type="radio" name="slider" id="radio3" class="slider__radio">
+    <input type="radio" name="slider" id="radio4" class="slider__radio">
+    <div class="slider__card-wrapper">
+      <div class="slider__container">
+        <div class="slider__card slider__card--1"><img src="./img/1.png" alt="no-img" class="slider__img">
+          <p class="slider__text">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio optio nostrum Lorem ipsum
+            dolor sit amet consectetur adipisicing. endis tempora.</p>
+        </div>
+        <div class="slider__card slider__card--2"><img src="./img/2.png" alt="no-img" class="slider__img">
+          <p class="slider__text">Odio optio nostrum exercitationem assumenda eveniet incidunt doloribus minus, accusamus
+            perferendis tempora.</p>
+        </div>
+        <div class="slider__card slider__card--3"><img src="./img/3.png" alt="no-img" class="slider__img">
+          <p class="slider__text">Lorem ipsum Lorem, ipsum. adipisicing elit. Odio optio nostrum exercitationem assumenda
+            eveniet incidunt doloribus minus, accusamus perferendis tempora.</p>
+        </div>
+        <div class="slider__card slider__card--4"><img src="./img/5.png" alt="no-img" class="slider__img">
+          <p class="slider__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum, dolor sit amet
+            consectetur adipisicing elit. Odio optio nostrum exercitationem assumenda eveniet incidunt doloribus minus,
+            accusamus perferendis tempora.</p>
+        </div>
       </div>
     </div>
-  </body>
+    <div class="slider__label">
+      <label for="radio1"></label>
+      <label for="radio2"></label>
+      <label for="radio3"></label>
+      <label for="radio4"></label>
+    </div>
+    <div class="slider__btn">
+      <label for="radio1"></label>
+      <label for="radio2"></label>
+      <label for="radio3"></label>
+      <label for="radio4"></label>
+    </div>
+  </section>
+</body>
+
 </html>
