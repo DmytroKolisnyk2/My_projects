@@ -1,93 +1,18 @@
-// reset scss
-* {
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  text-decoration: none;
-  list-style: none;
-  font-size: 0;
+.key-features__wrapper_img {
+ width: 418px;
+ position: relative;
+ &:hover>.wrapper_img__inner{transform: scale(1.1);}
 }
-// reset scss
+.wrapper_img__frame{
+position: absolute;
+top: 0;
+left: 0;
+z-index: 2;
 
-.slider {
-  padding-top: 40px;
-  &__radio {
-    visibility: hidden;
-    visibility: hidden;
-
-  }
-  &__card-wrapper {
-    width: 350px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-  &__container {
-    display: flex;
-    width: 400%;
-    margin-bottom: 20px;
-  }
-  &__card {
-    width: 350px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-  }
-  &__img {
-    width: 350px;
-    margin-bottom: 20px;
-  }
-  &__text {
-    font-size: 16px;
-  }
-  &__label {
-  }
-  &__btn {
-    display: flex;
-    margin: 0 auto;
-    width: 100px;
-    justify-content: space-between;
-  }
-  &__btn label {
-    display: block;
-    border-radius: 50%;
-    width: 20px;
-    height: 20px;
-    background-color: grey;
-  }
 }
-
-#radio1 {
-  &:checked ~ .slider__btn label:nth-child(1) {
-    background-color: blue;
-  }
-  &:checked ~ .slider__card-wrapper > .slider__container {
-    margin-left:  0;
-  }
-}
-#radio2 {
-  &:checked ~ .slider__btn label:nth-child(2) {
-    background-color: blue;
-  }
-  &:checked ~ .slider__card-wrapper > .slider__container {
-    margin-left:  -100%;
-  }
-}
-#radio3 {
-  &:checked ~ .slider__btn label:nth-child(3) {
-    background-color: blue;
-  }
-  &:checked ~ .slider__card-wrapper > .slider__container {
-    margin-left:  -200%;
-  }
-}
-#radio4 {
-  &:checked ~ .slider__btn label:nth-child(4) {
-    background-color: blue;
-  }
-  &:checked ~ .slider__card-wrapper > .slider__container {
-    margin-left:  -300%;
-  }
+.wrapper_img__inner{
+position: absolute;
+top: 97px;
+left: 73px;
+transition: 200ms linear;
 }
