@@ -3,6 +3,8 @@
   position: relative; }
   .key-features__wrapper_img:hover > .wrapper_img__inner {
     transform: scale(1.15); }
+  .key-features__wrapper_img:hover > .wrapper_img__button {
+    opacity: 1; }
 
 .wrapper_img__frame {
   position: absolute;
@@ -15,3 +17,31 @@
   top: 97px;
   left: 73px;
   transition: 200ms linear; }
+
+.wrapper_img__button {
+  left: 90px;
+  text-align: center;
+  position: absolute;
+  display: block;
+  font-family: "Open Sans", sans-serif;
+  border-radius: 8px;
+  height: 40px;
+  width: 225px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 700;
+  transition: 300ms linear;
+  z-index: 3;
+  padding-top: 8px;
+  opacity: 0; }
+  .wrapper_img__button--apple {
+    top: 480px;
+    background-color: #330cf4; }
+  .wrapper_img__button--play {
+    background-color: #f4880c;
+    top: 135px; }
+  .wrapper_img__button:hover {
+    transform: scale(1.05); }
+  .wrapper_img__button:active {
+    border: 2px solid aqua; }
