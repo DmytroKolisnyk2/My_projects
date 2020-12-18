@@ -2,7 +2,7 @@
   width: 418px;
   position: relative; }
   .key-features__wrapper_img:hover > .wrapper_img__inner {
-    transform: scale(1.5); }
+    transform: scale(1.15); }
 
 .wrapper_img__frame {
   position: absolute;
