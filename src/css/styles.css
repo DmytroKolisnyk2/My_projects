@@ -3,10 +3,8 @@
   position: relative; }
   .key-features__wrapper_img:hover > .wrapper_img__inner {
     transform: scale(1.15); }
-
   .key-features__wrapper_img:hover > .wrapper_img__button {
     opacity: 1; }
-
 
 .wrapper_img__frame {
   position: absolute;
@@ -18,7 +16,8 @@
   position: absolute;
   top: 97px;
   left: 73px;
-  transition: 200ms linear; }
+  transition: 200ms linear;
+  z-index: -1; }
 
 .wrapper_img__button {
   left: 90px;
