@@ -3,11 +3,10 @@
   position: relative; }
   .key-features__wrapper_img:hover > .wrapper_img__inner {
     transform: scale(1.15); }
-<<<<<<< HEAD
+
   .key-features__wrapper_img:hover > .wrapper_img__button {
     opacity: 1; }
-=======
->>>>>>> c2b7569b873e963c872cd989a3a7f3a59133f863
+
 
 .wrapper_img__frame {
   position: absolute;
