@@ -13,7 +13,7 @@ export default [
     color: "orange",
     description: 9,
   },
-  { id: 10, src: "../img/.png", color: "aqua", description: 10 },
+  { id: 10, src: "../img/1.png", color: "aqua", description: 10 },
   { id: 11, src: "../img/.png", color: "purple", description: 11 },
   { id: 12, src: "../img/.png", color: "pink", description: 12 },
   { id: 13, src: "../img/.png", color: "brown", description: 13 },
