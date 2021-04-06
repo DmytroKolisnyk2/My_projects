@@ -24,7 +24,7 @@ position: relative;
 z-index: 2;
 }
 .default {
-  background-image: url("http://www.nordicrotors.com/images_2/display_2/SE-JGF2011-12-28_14:13:26_display_5136.jpg");
+  background-image: url("./img/2.png");
   background-size: cover;
 }
 .active {

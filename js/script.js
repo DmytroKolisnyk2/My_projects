@@ -30,17 +30,35 @@ const gamePlay = function (cards) {
   const compareCard = function (event) {
     if (state.position === 2) {
       state.position = 1;
+      console.log(state);
+      console.log(cardsRef);
+      const repairCards = function () {
+        state.ref.classList.remove("active");
+        state.currentTarget.classList.remove("active");
+        state.ref.addEventListener("click", compareCard);
+        state.currentTarget.addEventListener("click", compareCard);
+      };
       if (event.currentTarget.dataset.id === state.id) {
         event.currentTarget.removeEventListener("click", compareCard);
         state.position = 1;
         console.log(event.currentTarget);
         event.currentTarget.querySelector("img").classList.add("active");
         event.currentTarget.classList.add("active");
+        console.log(1);
+        // console.log(cardsRef.indexOf({ ...event.currentTarget }));
+        // cardsRef.splice(cardsRef.indexOf(event.currentTarget), 1);
+        // cardsRef.splice(state.ref.indexOf(event.currentTarget), 1);
       }
       if (event.currentTarget.dataset.id !== state.id) {
+        console.log(0);
+        event.currentTarget.classList.add("active");
+        event.currentTarget.removeEventListener("click", compareCard);
+        state.currentTarget = event.currentTarget;
+        console.log(state.event);
+        setTimeout(repairCards.bind(state), 500);
       }
-    }
-    if (state.position === 1) {
+    } else if (state.position === 1) {
+      console.log(state);
       console.log(event.currentTarget);
       state.position = 2;
       state.ref = event.currentTarget;
