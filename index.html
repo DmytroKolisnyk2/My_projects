@@ -2,17 +2,38 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./styles.css">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./styles.css" />
   <title>Document</title>
 </head>
 
 <body>
+  <div class="settings">
+    <h1 class="settings__headline">Налаштування</h1>
+    <div class="settings__count-cards">
+      <h2 class="count-cards__headline">Виберіть кількість карток</h2>
+      <div class="count-cards__wrapper">
+        <button type="button" class="count-btn" data-count="12">12</button><button type="button" class="count-btn"
+          data-count="20">20</button><button type="button" class="count-btn" data-count="32">32</button><button
+          type="button" class="count-btn" data-count="40">40</button>
+      </div>
+    </div>
+    <br>
+    <button type="button" class="start-btn">Почати</button>
+  </div>
   <div class="card-container"></div>
-  <script src="./js/script.js" type='module'></script>
-  
+  <footer>
+ <div class="link-wrapper">
+      <a href="https://dmytrokolisnyk2.github.io/ubermensches_project/build/" class="link">Сайт проекту</a>
+      <a href="https://dmytrokolisnyk2.github.io/goiteens-front-end/homework-7/" class="link">Сайт домашки</a>
+      <a href="https://github.com/DmytroKolisnyk2/My_projects" class="link">Код сайту</a>
+      <a href="https://github.com/DmytroKolisnyk2" class="link">Мій GitHub</a>
+ </div>
+    <video src="./img/Колісник_Моя_Богема.webm"controls='' class="video"></video>
+  </footer>
+  <script src="./js/script.js" type="module"></script>
 </body>
 
 </html>
