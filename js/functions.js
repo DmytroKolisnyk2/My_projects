@@ -29,21 +29,21 @@ export const gamePlay = (cards) => {
     if (state.position === 2) {
       state.position = 1;
       const repairCards = function () {
-        this.ref.classList.remove("active");
-        this.currentTarget.classList.remove("active");
+        this.ref.classList.remove("choosed");
+        this.currentTarget.classList.remove("choosed");
         cards.forEach((card) => card.addEventListener("click", compareCard));
       };
       if (event.currentTarget.dataset.id === state.id) {
         event.currentTarget.removeEventListener("click", compareCard);
         state.position = 1;
-        event.currentTarget.querySelector("img").classList.add("active");
-        event.currentTarget.classList.add("active");
+        event.currentTarget.querySelector("img").classList.add("choosed");
+        event.currentTarget.classList.add("choosed");
         // console.log(cardsRef.indexOf({ ...event.currentTarget }));
         // cardsRef.splice(cardsRef.indexOf(event.currentTarget), 1);
         // cardsRef.splice(state.ref.indexOf(event.currentTarget), 1);
       }
       if (event.currentTarget.dataset.id !== state.id) {
-        event.currentTarget.classList.add("active");
+        event.currentTarget.classList.add("choosed");
         cards.forEach((card) => card.removeEventListener("click", compareCard));
         state.currentTarget = event.currentTarget;
         setTimeout(repairCards.bind(state), 500);
@@ -53,8 +53,8 @@ export const gamePlay = (cards) => {
       state.ref = event.currentTarget;
       state.id = event.currentTarget.dataset.id;
       event.currentTarget.removeEventListener("click", compareCard);
-      event.currentTarget.querySelector("img").classList.add("active");
-      event.currentTarget.classList.add("active");
+      event.currentTarget.querySelector("img").classList.add("choosed");
+      event.currentTarget.classList.add("choosed");
     }
   };
   cards.forEach((card) => card.addEventListener("click", compareCard));
@@ -62,8 +62,11 @@ export const gamePlay = (cards) => {
 
 // розпочинає гру із заданими параметрами
 
-// export const startGame = (cardsAmount, cards, containerRef) => {
-//   drawCards(cardsAmount, cards, containerRef);
-//   const cardsRef = [...containerRef.querySelectorAll(".card")];
-//   gamePlay(cardsRef);
-// };
+export const startGame = (cardsAmount, cards, containerRef) => {
+  drawCards(cardsAmount, cards, containerRef);
+  const cardsRef = [...containerRef.querySelectorAll(".card")];
+  gamePlay(cardsRef);
+  containerRef.querySelectorAll(".card").forEach((card) => {
+    card.remove();
+  });
+};
