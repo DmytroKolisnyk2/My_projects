@@ -24,7 +24,7 @@ export const drawCards = (amount, cards, containerRef) => {
 
 // починає гру на заданих картках (приймає масив карток)
 export const gamePlay = (cards) => {
-  const state = { ref: "", id: 0, position: 1 };
+  const state = { ref: "", id: 0, position: 1, gameState: 0 };
   const compareCard = (event) => {
     if (state.position === 2) {
       state.position = 1;
@@ -37,10 +37,13 @@ export const gamePlay = (cards) => {
         event.currentTarget.removeEventListener("click", compareCard);
         state.position = 1;
         event.currentTarget.querySelector("img").classList.add("choosed");
+        event.currentTarget.classList.add("hidden");
+        state.ref.classList.add("hidden");
         event.currentTarget.classList.add("choosed");
-        // console.log(cardsRef.indexOf({ ...event.currentTarget }));
-        // cardsRef.splice(cardsRef.indexOf(event.currentTarget), 1);
-        // cardsRef.splice(state.ref.indexOf(event.currentTarget), 1);
+        state.gameState++;
+        if (state.gameState === cards.length / 2) {
+         endGame(); 
+        }
       }
       if (event.currentTarget.dataset.id !== state.id) {
         event.currentTarget.classList.add("choosed");
@@ -70,3 +73,8 @@ export const startGame = (cardsAmount, cards, containerRef) => {
     card.remove();
   });
 };
+
+// закінчує гру
+const endGame = () => {
+  alert('you won');
+}

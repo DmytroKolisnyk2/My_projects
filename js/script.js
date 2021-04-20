@@ -3,7 +3,7 @@ import { drawCards } from "./functions.js";
 import { gamePlay } from "./functions.js";
 import { startGame } from "./functions.js";
 const containerRef = document.querySelector(".card-container");
-let cardsAmount = 12;
+let cardsAmount = 6;
 document
   .querySelector(".count-cards__wrapper")
   .addEventListener(

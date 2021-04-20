@@ -13,7 +13,7 @@
 }
 .card {
   width: 200px;
-  height: 200px;
+  height: 320px;
   border-radius: 11px;
   transition: 300ms linear;
 }
@@ -21,14 +21,14 @@
   opacity: 0;
   border-radius: 10px;
   width: 200px;
-  height: 200px;
+  height: 320px;
   object-fit: cover;
   transition: 300ms linear;
   position: relative;
   z-index: 2;
 }
 .default {
-  background-image: url("./img/1.jpg");
+  background-image: url("./img/card-default.png");
   background-size: cover;
 }
 .choosed {
