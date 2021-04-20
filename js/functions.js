@@ -13,7 +13,7 @@ export const drawCards = (amount, cards, containerRef) => {
         random = Math.ceil(Math.random() * cards.length);
         if (setOfCards.includes(random)) {
           let card = cards.find((card) => card.id === random);
-          let string = `<div class="card card-${card.id} default" data-id='${card.id}' style="background-color: ${card.color};"><img src="${card.src}" alt="${card.description}"></div>`;
+          let string = `<div class="card card-${card.id}" data-id='${card.id}' ><div class="default" ></div><img class="card__photo" src="${card.src}" alt="${card.description}"></div>`;
           containerRef.insertAdjacentHTML("beforeend", string);
           setOfCards.splice(setOfCards.indexOf(random), 1);
         }
@@ -27,10 +27,11 @@ export const gamePlay = (cards) => {
   const state = { ref: "", id: 0, position: 1, gameState: 0 };
   const compareCard = (event) => {
     if (state.position === 2) {
+      event.target.classList.add("choosed");
       state.position = 1;
       const repairCards = function () {
-        this.ref.classList.remove("choosed");
-        this.currentTarget.classList.remove("choosed");
+        this.ref.querySelector("img").classList.remove("choosed");
+        event.target.classList.remove("choosed");
         cards.forEach((card) => card.addEventListener("click", compareCard));
       };
       if (event.currentTarget.dataset.id === state.id) {
@@ -42,7 +43,7 @@ export const gamePlay = (cards) => {
         event.currentTarget.classList.add("choosed");
         state.gameState++;
         if (state.gameState === cards.length / 2) {
-         endGame(); 
+          endGame();
         }
       }
       if (event.currentTarget.dataset.id !== state.id) {
@@ -57,7 +58,7 @@ export const gamePlay = (cards) => {
       state.id = event.currentTarget.dataset.id;
       event.currentTarget.removeEventListener("click", compareCard);
       event.currentTarget.querySelector("img").classList.add("choosed");
-      event.currentTarget.classList.add("choosed");
+      event.target.classList.add("choosed");
     }
   };
   cards.forEach((card) => card.addEventListener("click", compareCard));
@@ -76,5 +77,5 @@ export const startGame = (cardsAmount, cards, containerRef) => {
 
 // закінчує гру
 const endGame = () => {
-  alert('you won');
-}
+  alert("you won");
+};

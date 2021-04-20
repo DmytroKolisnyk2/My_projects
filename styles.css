@@ -7,8 +7,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  height: 700px;
-  width: 940px;
+  width: 1000px;
   margin: 10px auto 40px;
 }
 .card {
@@ -16,24 +15,26 @@
   height: 320px;
   border-radius: 11px;
   transition: 300ms linear;
+  position: relative;
 }
-.card > img {
+.card__photo {
   opacity: 0;
-  border-radius: 10px;
   width: 200px;
   height: 320px;
-  object-fit: cover;
   transition: 300ms linear;
-  position: relative;
-  z-index: 2;
+  position: absolute;
+  transform: rotateY(0deg);
 }
 .default {
-  background-image: url("./img/card-default.png");
+  width: 200px;
+  height: 320px;
+  position: absolute;
+  transform: rotateY(0deg);
+  background-image: url("./img/card-down.png");
   background-size: cover;
 }
 .choosed {
   opacity: 1;
-  background-image: none;
 }
 .link {
   transition: 300ms linear;
