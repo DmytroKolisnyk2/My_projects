@@ -13,11 +13,11 @@
 .card {
   width: 200px;
   height: 320px;
-  border-radius: 11px;
   transition: 300ms linear;
   position: relative;
 }
 .card__photo {
+  border-radius: 11px;
   opacity: 0;
   width: 200px;
   height: 320px;
@@ -26,6 +26,7 @@
   transform: rotateY(0deg);
 }
 .default {
+  border-radius: 11px;
   width: 200px;
   height: 320px;
   position: absolute;
@@ -35,6 +36,7 @@
 }
 .choosed {
   opacity: 1;
+  /* visibility: hidden; */
 }
 .link {
   transition: 300ms linear;
