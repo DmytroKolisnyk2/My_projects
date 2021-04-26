@@ -43,7 +43,7 @@
   opacity: 1;
   transform: rotateY(0deg);
 }
-.flip{
+.flip {
   transform: rotateY(180deg);
 }
 .hidden {
@@ -52,4 +52,17 @@
 }
 .scaled {
   transform: scale(4);
+}
+.game {
+  position: relative;
+}
+.timer {
+  position: absolute;
+  top: -50px;
+  right: 40px;
+}
+
+.timer__inner{
+  display: inline-block;
+  font-size: 30px;
 }

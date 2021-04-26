@@ -1,5 +1,5 @@
 // генерує в випадкові послідовності картки (приймає кількість карток, масив карток та посилання куди вставити картки)
-export const drawCards = (amount, cards, containerRef) => {
+const drawCards = (amount, cards, containerRef) => {
   let collection = [];
   while (!(collection.length === amount)) {
     let random = Math.ceil(Math.random() * cards.length);
@@ -23,11 +23,9 @@ export const drawCards = (amount, cards, containerRef) => {
 };
 
 // починає гру на заданому контейнері карток (контейнер карток)
-
-export const gamePlay = (container) => {
+const gamePlay = (container) => {
   const state = { ref: "", id: 0, position: 1, gameState: 0, blocked: false };
   const compareCard = () => {
-    console.log(event.target);
     if (state.blocked) return;
     if (event.target === container) return;
     event.target.classList.add("choosed");
@@ -47,7 +45,7 @@ export const gamePlay = (container) => {
         setTimeout(removeCards, 400, event);
         state.gameState++;
         if (state.gameState === container.children.length / 2) {
-          endGame();
+          setTimeout(endGame, 500);
         }
       } else {
         state.position = 1;
@@ -71,16 +69,34 @@ export const gamePlay = (container) => {
 
 // розпочинає гру із заданими параметрами
 
-export const startGame = (cardsAmount, cards, containerRef) => {
-  drawCards(cardsAmount, cards, containerRef);
-  const cardsRef = [...containerRef.querySelectorAll(".card")];
-  gamePlay(cardsRef);
+export const startGame = (cardsAmount, cards, containerRef, timerCount) => {
   containerRef.querySelectorAll(".card").forEach((card) => {
     card.remove();
   });
+  const timerRef = document.querySelector(".timer");
+  const minutesRef = document.querySelector(".timer__minutes");
+  const secondsRef = document.querySelector(".timer__seconds");
+  timerRef.classList.remove("hidden");
+  setTimeout(timer, 1000, timerCount, minutesRef, secondsRef);
+  drawCards(cardsAmount, cards, containerRef);
+  gamePlay(containerRef);
 };
 
 // закінчує гру
 const endGame = () => {
   alert("you won");
+};
+const timer = (timerCount, minutesRef, secondsRef) => {
+  let minutes = (timerCount / 60) % 60;
+  let seconds = timerCount % 60 < 10 ? `0${timerCount % 60}` : timerCount % 60;
+  // let seconds = timerCount % 60;
+  if (timerCount <= 0) {
+    clearInterval(timer);
+    endGame();
+  } else {
+    timerCount--;
+    minutesRef.innerHTML = Math.floor(minutes);
+    secondsRef.innerHTML = seconds;
+    setTimeout(timer, 1000, timerCount, minutesRef, secondsRef);
+  }
 };
