@@ -6,7 +6,7 @@ refs.cardsAmount = 12;
 refs.timerCount = 60;
 document
   .querySelector(".count-cards__wrapper")
-  .addEventListener("click", () => (cardsAmount = +event.target.dataset.count));
+  .addEventListener("click", () => (refs.cardsAmount = +event.target.dataset.count));
 document
   .querySelector(".count-timer__wrapper")
   .addEventListener(

@@ -89,8 +89,7 @@ const endGame = () => {
 const timer = (timerCount, minutesRef, secondsRef) => {
   let minutes = (timerCount / 60) % 60;
   let seconds = timerCount % 60 < 10 ? `0${timerCount % 60}` : timerCount % 60;
-  // let seconds = timerCount % 60;
-  if (timerCount <= 0) {
+  if (timerCount < 0) {
     clearInterval(timer);
     endGame();
   } else {
