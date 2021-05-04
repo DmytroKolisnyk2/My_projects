@@ -22,10 +22,35 @@ const drawCards = (amount, cards, containerRef) => {
   }
 };
 
-// починає гру на заданому контейнері карток (контейнер карток)
-const gamePlay = (container) => {
-  const state = { ref: "", id: 0, position: 1, gameState: 0, blocked: false };
-  const compareCard = () => {
+// починає гру на заданому контейнері карток (контейнер карток, тип гри)
+const gamePlay = (container, playerAmount,gameType) => {
+  const state = {
+    ref: "",
+    id: 0,
+    position: 1,
+    gameState: 0,
+    blocked: false,
+    move: 0,
+    count: [0, 0, 0, 0],
+  };
+  const removeCards = (event) => {
+    event.target.classList.add("scaled");
+    state.ref.classList.add("scaled");
+    event.target.parentNode.classList.add("hidden");
+    state.ref.parentNode.classList.add("hidden");
+    state.blocked = false;
+  };
+  const repairCard = (event) => {
+    event.target.classList.remove("choosed");
+    state.ref.classList.remove("choosed");
+    event.target.previousSibling.classList.remove("flip");
+    state.ref.previousSibling.classList.remove("flip");
+    state.blocked = false;
+  };
+  const playerCount = [...document.querySelectorAll(".game__player-counter")];
+  const playerMessage = document.querySelector(".game__player-turn");
+  // починає гру при сингл плеєрі і аркаді
+  const compareCardSingle = () => {
     if (state.blocked) return;
     if (event.target === container) return;
     event.target.classList.add("choosed");
@@ -35,13 +60,6 @@ const gamePlay = (container) => {
       if (state.ref.dataset.id === event.target.dataset.id) {
         state.position = 1;
         state.blocked = true;
-        const removeCards = (event) => {
-          event.target.classList.add("scaled");
-          state.ref.classList.add("scaled");
-          event.target.parentNode.classList.add("hidden");
-          state.ref.parentNode.classList.add("hidden");
-          state.blocked = false;
-        };
         setTimeout(removeCards, 400, event);
         state.gameState++;
         if (state.gameState === container.children.length / 2) {
@@ -50,48 +68,116 @@ const gamePlay = (container) => {
       } else {
         state.position = 1;
         state.blocked = true;
-        const repairCard = (event) => {
-          event.target.classList.remove("choosed");
-          state.ref.classList.remove("choosed");
-          event.target.previousSibling.classList.remove("flip");
-          state.ref.previousSibling.classList.remove("flip");
-          state.blocked = false;
-        };
-        setTimeout(repairCard, 800, event);
+        setTimeout(repairCard, 1800, event);
       }
     } else if (state.position === 1) {
       state.ref = event.target;
       state.position = 2;
     }
   };
-  container.addEventListener("click", compareCard);
+
+  // починає гру при мульти плеєрі
+  const compareCardMulti = () => {
+    if (state.blocked) return;
+    if (event.target === container) return;
+    event.target.classList.add("choosed");
+    event.target.previousSibling.classList.add("flip");
+    if (state.position === 2) {
+      if (state.ref === event.target) return;
+      if (state.ref.dataset.id === event.target.dataset.id) {
+        state.position = 1;
+        state.blocked = true;
+        setTimeout(removeCards, 400, event);
+        state.gameState++;
+        playerCount[state.move].textContent++;
+        state.count[state.move]++;
+        if (state.gameState === container.children.length / 2) {
+          state.maxCount = 0;
+          state.winner = [];
+          state.count.map(
+            (player) =>
+              (state.maxCount =
+                state.maxCount < player ? player : state.maxCount)
+          );
+          state.count.map((player, index) =>
+            state.maxCount === player ? state.winner.push(index) : 1
+          );
+          let string = "Winner:";
+          for (const player of state.winner) {
+            string = `${string} player-${player + 1}`;
+          }
+          alert(string);
+          setTimeout(endGame, 500);
+        }
+      } else {
+        state.position = 1;
+        state.blocked = true;
+        state.move = state.move === playerAmount - 1 ? 0 : state.move + 1;
+        console.log(state.move);
+        setTimeout(repairCard, 800, event);
+        setTimeout(function () {
+          playerMessage.classList.remove("hidden");
+          playerMessage.textContent = `Player-${state.move + 1} move`;
+        }, 600);
+        setTimeout(function () {
+          playerMessage.classList.add("hidden");
+          playerMessage.classList.remove("scaled");
+        }, 1300);
+      }
+    } else if (state.position === 1) {
+      state.ref = event.target;
+      state.position = 2;
+    }
+  };
+  if (gameType ==='singlePlayer') container.addEventListener("click", compareCardSingle);
+  if (gameType ==='multiPlayer') {
+    container.addEventListener("click", compareCardMulti);
+    playerCount.forEach((count) => (count.textContent = 0));
+  }
 };
 
 // розпочинає гру із заданими параметрами
 
-export const startGame = (cardsAmount, cards, containerRef, timerCount) => {
+export const startGame = (
+  cardsAmount,
+  cards,
+  containerRef,
+  timerCount,
+  playerAmount,
+  gameType,
+) => {
+  console.log(gameType);
   containerRef.querySelectorAll(".card").forEach((card) => {
     card.remove();
   });
   const timerRef = document.querySelector(".timer");
   const minutesRef = document.querySelector(".timer__minutes");
   const secondsRef = document.querySelector(".timer__seconds");
-  timerRef.classList.remove("hidden");
-  setTimeout(timer, 1000, timerCount, minutesRef, secondsRef);
+  if (gameType==='singlePlayer') {
+    timerRef.classList.remove("hidden");
+    setTimeout(timer, 1000, timerCount, minutesRef, secondsRef);
+  }
   drawCards(cardsAmount, cards, containerRef);
-  gamePlay(containerRef);
+  gamePlay(containerRef, playerAmount,gameType);
 };
 
 // закінчує гру
-const endGame = () => {
-  alert("you won");
+const endGame = (timerCount) => {
+  if (timerCount + 1 === 0) {
+    document.querySelector(".audio__lose").play();
+    alert("loser");
+  } else {
+    document.querySelector(".audio__won").play();
+    document.querySelector('.game__congratulation').classList.remove('hidden');
+    alert("you won");
+  }
 };
+// таймер (кількість часу, посилання на хилини, секунди)
 const timer = (timerCount, minutesRef, secondsRef) => {
   let minutes = (timerCount / 60) % 60;
   let seconds = timerCount % 60 < 10 ? `0${timerCount % 60}` : timerCount % 60;
   if (timerCount < 0) {
-    clearInterval(timer);
-    endGame();
+    endGame(timerCount);
   } else {
     timerCount--;
     minutesRef.innerHTML = Math.floor(minutes);
