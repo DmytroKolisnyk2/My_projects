@@ -22,8 +22,9 @@ const drawCards = (amount, cards, containerRef) => {
   }
 };
 
+let gameResult;
 // починає гру на заданому контейнері карток (контейнер карток, тип гри)
-const gamePlay = (container, playerAmount,gameType) => {
+const gamePlay = (container, playerAmount, gameType) => {
   const state = {
     ref: "",
     id: 0,
@@ -63,6 +64,7 @@ const gamePlay = (container, playerAmount,gameType) => {
         setTimeout(removeCards, 400, event);
         state.gameState++;
         if (state.gameState === container.children.length / 2) {
+          gameResult = "win";
           setTimeout(endGame, 500);
         }
       } else {
@@ -113,7 +115,6 @@ const gamePlay = (container, playerAmount,gameType) => {
         state.position = 1;
         state.blocked = true;
         state.move = state.move === playerAmount - 1 ? 0 : state.move + 1;
-        console.log(state.move);
         setTimeout(repairCard, 800, event);
         setTimeout(function () {
           playerMessage.classList.remove("hidden");
@@ -129,8 +130,9 @@ const gamePlay = (container, playerAmount,gameType) => {
       state.position = 2;
     }
   };
-  if (gameType ==='singlePlayer') container.addEventListener("click", compareCardSingle);
-  if (gameType ==='multiPlayer') {
+  if (gameType === "singlePlayer")
+    container.addEventListener("click", compareCardSingle);
+  if (gameType === "multiPlayer") {
     container.addEventListener("click", compareCardMulti);
     playerCount.forEach((count) => (count.textContent = 0));
   }
@@ -144,31 +146,32 @@ export const startGame = (
   containerRef,
   timerCount,
   playerAmount,
-  gameType,
+  gameType
 ) => {
-  console.log(gameType);
   containerRef.querySelectorAll(".card").forEach((card) => {
     card.remove();
   });
   const timerRef = document.querySelector(".timer");
   const minutesRef = document.querySelector(".timer__minutes");
   const secondsRef = document.querySelector(".timer__seconds");
-  if (gameType==='singlePlayer') {
+  if (gameType === "singlePlayer") {
     timerRef.classList.remove("hidden");
     setTimeout(timer, 1000, timerCount, minutesRef, secondsRef);
   }
   drawCards(cardsAmount, cards, containerRef);
-  gamePlay(containerRef, playerAmount,gameType);
+  // document.querySelector(".audio__game-play").play();
+  gamePlay(containerRef, playerAmount, gameType);
 };
 
 // закінчує гру
 const endGame = (timerCount) => {
+  document.querySelector(".audio__game-play").pause();
   if (timerCount + 1 === 0) {
     document.querySelector(".audio__lose").play();
     alert("loser");
   } else {
     document.querySelector(".audio__won").play();
-    document.querySelector('.game__congratulation').classList.remove('hidden');
+    document.querySelector(".game__congratulation").classList.remove("hidden");
     alert("you won");
   }
 };
@@ -176,12 +179,14 @@ const endGame = (timerCount) => {
 const timer = (timerCount, minutesRef, secondsRef) => {
   let minutes = (timerCount / 60) % 60;
   let seconds = timerCount % 60 < 10 ? `0${timerCount % 60}` : timerCount % 60;
+  if (gameResult === "win") return;
   if (timerCount < 0) {
     endGame(timerCount);
   } else {
     timerCount--;
     minutesRef.innerHTML = Math.floor(minutes);
     secondsRef.innerHTML = seconds;
-    setTimeout(timer, 1000, timerCount, minutesRef, secondsRef);
+    const tester = setTimeout(timer, 1000, timerCount, minutesRef, secondsRef);
+    console.log(tester);
   }
 };

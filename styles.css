@@ -88,14 +88,14 @@
   width: 700px;
 }
 .settings__type {
+  transition: 200ms linear;
   cursor: pointer;
   position: relative;
-  z-index: 2;
   top: 2px;
   box-sizing: border-box;
   width: 33.33333%;
   height: 50px;
-  border-bottom: 50px solid rgb(95, 151, 255);
+  border-bottom: 50px solid rgb(44, 80, 241);
   opacity: 0.6;
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
@@ -123,10 +123,10 @@
 }
 .settings__by-type {
   /* width: 1000px; */
-  background-color: rgb(95, 151, 255);
+  background-color: var(--main-blue);
   border-radius: 0 0 10px 10px;
 }
-.count-cards__headline {
+.settings__headline {
   margin: 0;
 }
 .modal {
@@ -144,5 +144,5 @@
   left: 0;
   /* opacity: 0.5; */
   z-index: -1;
-  background-image: url('./img/congratulation.gif');
+  background-image: url("./img/congratulation.gif");
 }
